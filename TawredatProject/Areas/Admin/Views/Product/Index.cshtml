@@ -1,0 +1,202 @@
+﻿@model TawredatProject.Models.HomePageModel
+@{
+    ViewData["Title"] = "المنتجات";
+}
+<!-- Content Header (Page header) -->
+@section DataTableStyles{
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>عرض المنتجات </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">المنتجات </a></li>
+                    <li class="breadcrumb-item active">عرض المنتجات </li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+
+
+
+                <!-- /.card-header -->
+                <div class="card-body">
+               <form asp-controller="Product" asp-action="Index">
+                    <div class="row">
+                       <div class="col-xl-11">
+                          <input type="text" placeholder="Search By Name" name="MyName" class="form-control" />
+                       </div>
+                        <div class="col-xl-1">
+                           <input type="submit" value="Search" class="btn btn-primary" />
+                        </div>
+                    </div>
+                  </form>
+
+
+                    <br />
+                    <table id="example1" class="table table-hover table-bordered table-striped text-center font-weight-bold ">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>اسم المنتج </th>
+                                <th>وصف المنتج</th>
+                                <th>سعر المنتج</th>
+                                <th>كمية المنتج</th>
+                                <th>قسم المنتج</th>
+                                <th>مخزن المنتج</th>
+                                <th>بداية الخصم</th>
+                                <th>نهاية الخصم</th>
+                                <th>نسبة الخصم</th>
+                                <th>سعر المنتج بعد الخصم</th>
+                                <th>التاريخ</th>
+                                <th>صورة قسم المنتج</th>
+
+                                <th>تعديل</th>
+                               
+                                <th>حذف</th>
+                              
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.lstProducts)
+                            {
+
+                                <tr>
+                                    <td>@item.ProductName</td>
+                                    <td>
+                                        @item.ProductDescription
+                                    </td>
+                                    <td>
+                                        @item.ProductPrice
+                                    </td>
+                                    <td>
+                                        @item.Quantity
+                                    </td>
+
+                                    <td>
+                                        @item.ProductCategoryName
+                                    </td>
+                                    <td>
+                                        @item.StoreName
+                                    </td>
+                                     <td>
+                                        @item.StartDate
+                                    </td>
+                                     <td>
+                                        @item.EndDate
+                                    </td>
+                                    <td>
+                                        @item.DiscountPercent
+                                    </td>
+                                    <td>
+                                        @item.ProductNewPrice
+                                    </td>
+                                    <td>
+                                        @item.CreatedDate
+                                    </td>
+
+                                    <td style="width:10%">
+
+                                        <img style="max-width: 100%; " max-height: 100%;" src="@string.Format("/Uploads/{0}",item.ProductImage)" alt="Img placeholder">
+
+
+
+
+
+                                    </td>
+                                  
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="Product" asp-action="Form" asp-route-id="@item.ProductId" class="btn btn-info text-white" style="cursor:pointer">
+                                            تعديل
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="Product" asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-danger text-white" style="cursor:pointer">
+                                            حذف
+                                        </a>
+                                    </td>
+                                  
+                                   
+                                </tr>
+
+                            }
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>اسم المنتج </th>
+                                <th>وصف المنتج</th>
+                                <th>سعر المنتج</th>
+                                <th>كمية المنتج</th>
+                                <th>قسم المنتج</th>
+                                <th>بداية الخصم</th>
+                                <th>نهاية الخصم</th>
+                                <th>نسبة الخصم</th>
+                                <th>سعر المنتج بعد الخصم</th>
+                                <th>التاريخ</th>
+
+                                <th>صورة قسم المنتج</th>
+
+                                <th>تعديل</th>
+
+                                <th>حذف</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            
+        
+<!-- /.content -->
+@section DataTableJS{
+
+    <script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/plugins/jszip/jszip.min.js"></script>
+    <script src="~/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="~/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="~/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="~/Admin/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Admin/plugins/jquery/jquery.min.js"></script>
+
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example1').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+}
