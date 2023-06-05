@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace TawredatProject.Areas.Admin.Controllers
 {
@@ -19,5 +21,12 @@ namespace TawredatProject.Areas.Admin.Controllers
         {
             return View();
         }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> LogOff()
+        //{
+        //    await _signInManager.SignOutAsync();
+        //    return RedirectToAction(nameof(HomeController.Index), "Home");
+        //}
     }
 }

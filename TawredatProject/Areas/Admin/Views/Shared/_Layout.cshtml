@@ -132,16 +132,27 @@
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    @*  <div class="image">
-                          <img src="~/Admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                        </div>*@
-                    <div class="info" style="display:block;margin:auto;">
-                        <center>
-                            <a style="font-size:smaller; color:white">
-                                <span>مرحبا بك &nbsp;</span> @userManager.GetUserAsync(User).Result.FirstName
-                            </a>
-                        </center>
-                    </div>
+                         <ul id="main-menu-navigation" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-alt"></i>
+                                    <p>
+                                         <span>مرحبا بك &nbsp;</span> @userManager.GetUserAsync(User).Result.FirstName
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                    <a href="/Home/Index" class="nav-link">
+                                            <i class="fas fa-sign-out-alt"></i>
+                                            <p>تسجيل الخروج</p>
+                                        </a>
+                                    </li>
+                                    
+                                </ul>
+
+                            </li>
+                         </ul>
                 </div>
 
                 <!-- Sidebar Menu -->
@@ -217,7 +228,7 @@
                                     <li class="nav-item">
                                         <a href="/Admin/UsersActivities/SupplierList" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>عرض</p>
+                                            <p> عرض تاجر</p>
                                         </a>
                                     </li>
                                
@@ -311,7 +322,7 @@
                                         </a>
                                     </li>
                               
-                                    <li class="nav-item">
+                                   @* <li class="nav-item">
                                         <a href="/Admin/CityDelivery/Index" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>عرض  قيمة الشحن للمدن  </p>
@@ -343,7 +354,7 @@
                                             <i class="far fa-circle nav-icon"></i>
                                             <p> عرض  تقييم رجال التوصيل</p>
                                         </a>
-                                    </li>
+                                    </li>*@
                                 </ul>
                             </li>
 
@@ -405,82 +416,14 @@
 
                             
 
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon far fa-calendar-alt"></i>
-                                    <p>
-                                        السياسة و الخصوصية
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="/Admin/PoliciesAndPrivacy/Index" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>عرض </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/Admin/PoliciesAndPrivacy/Form" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>اضافة </p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                           
 
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-table"></i>
-                                    <p>
-                                        الشروط و الاحكام
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="/Admin/TermAndCondition/Index" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>عرض  </p>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="/Admin/TermAndCondition/Form" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>اضافة </p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-edit"></i>
-                                    <p>
-                                        الشكاوي و الاقتراحات
-                                        <i class="fas fa-angle-left right"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="/Admin/ComplainsAndSuggestion/Index" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>عرض </p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-
-                            <li class="nav-header">ادارة المبيعات  </li>
-
+                            
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-tree"></i>
                                     <p>
-                                        فاتورة البيع
+                                        ادارة المبيعات
                                         <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a>
@@ -500,21 +443,21 @@
                                         </a>
                                     </li>
                                 </ul>
-                                <ul class="nav nav-treeview">
+                               @* <ul class="nav nav-treeview">
                                     <li class="nav-item">
                                         <a href="/Admin/SalesInvoice/Index" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>ربط رجال التوصيل بفواتير البيع </p>
                                         </a>
                                     </li>
-                                </ul>
+                                </ul>*@
                             </li>
-                             <li class="nav-header"> ادارة المشتريات </li>
+                          
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-weight"></i>
                                     <p>
-                                        اشتراك مديري المشتريات
+                                        ادارة المشتريات
                                         <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a>
@@ -522,14 +465,14 @@
                                     <li class="nav-item">
                                         <a href="/Admin/PurchaseSubscribtion/Index" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>عرض  </p>
+                                            <p> عرض   اشتراك مديري المشتريات  </p>
                                         </a>
                                     </li>
                                
                                     <li class="nav-item">
                                         <a href="/Admin/PurchaseSubscribtion/Form" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>اضافة </p>
+                                            <p>اضافة   اشتراك مديري المشتريات </p>
                                         </a>
                                     </li>
                                
@@ -543,7 +486,7 @@
                                     <li class="nav-item">
                                         <a href="/Admin/UsersActivities/DoctorList" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>عرض الاطباء  </p>
+                                            <p> عرض الاطباء التابعين لمدير المشتريات  </p>
                                         </a>
                                     </li>
                                 
@@ -563,7 +506,7 @@
                                     <li class="nav-item">
                                         <a href="/Admin/PaymentMethod/Form" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>اضافة </p>
+                                            <p> اضافة طرق الدفع </p>
                                         </a>
                                     </li>
                                 </ul>
@@ -661,6 +604,44 @@
                                         </a>
                                     </li>
                                 </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/Admin/TermAndCondition/Index" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p> عرض الشروط و الاحكام  </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/Admin/TermAndCondition/Form" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>اضافة الشروط و الاحكام </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/Admin/ComplainsAndSuggestion/Index" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>عرض الشروط و الاحكام </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/Admin/PoliciesAndPrivacy/Index" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p> عرض السياسة و الخصوصية </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/Admin/PoliciesAndPrivacy/Form" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>اضافةالسياسة و الخصوصية </p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
 
 
@@ -718,7 +699,7 @@
                                     <li class="nav-item">
                                         <a href="/Admin/UsersActivities/Index" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p> انشطة المستخدمين </p>
+                                            <p>  المستخدمين </p>
                                         </a>
                                     </li>
                                 </ul>
@@ -783,7 +764,8 @@
                                     <li class="nav-item">
                                         <a href="/Admin/EvaluationSupplierProduct/Index" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>عرض</p>
+                                            <p>  تقييم المنتجات </p>
+                                       
                                         </a>
                                     </li>
                                 </ul>
@@ -805,7 +787,7 @@
                                     <li class="nav-item">
                                         <a href="/Admin/Supplier/Index" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>عرض  </p>
+                                            <p>عرض المتاجر   </p>
                                         </a>
                                     </li>
                                 </ul>
@@ -813,7 +795,7 @@
                                     <li class="nav-item">
                                         <a href="/Admin/Supplier/Form" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>اضافة </p>
+                                            <p>اضافة المتاجر </p>
                                         </a>
                                     </li>
                                 </ul>
@@ -833,7 +815,7 @@
                                     <li class="nav-item">
                                         <a href="/Admin/SupplierCategory/Index" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>عرض  </p>
+                                            <p>عرض اقسام المتاجر  </p>
                                         </a>
                                     </li>
                                 </ul>
@@ -841,7 +823,7 @@
                                     <li class="nav-item">
                                         <a href="/Admin/SupplierCategory/Form" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>اضافة </p>
+                                            <p>اضافةاقسام المتاجر </p>
                                         </a>
                                     </li>
                                 </ul>
@@ -860,7 +842,7 @@
                                     <li class="nav-item">
                                         <a href="/Admin/SupplierProduct/Index" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>عرض  </p>
+                                            <p>عرض منتجات المتاجر  </p>
                                         </a>
                                     </li>
                                 </ul>
@@ -868,7 +850,7 @@
                                     <li class="nav-item">
                                         <a href="/Admin/SupplierProduct/Form" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>اضافة </p>
+                                            <p> اضافة منتجات </p>
                                         </a>
                                     </li>
                                 </ul>
@@ -876,13 +858,13 @@
 
 
                            
-                            <li class="nav-header">ادارة المنتجات</li>
+                       @*     <li class="nav-header">ادارة المنتجات</li>*@
 
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-tshirt"></i>
                                     <p>
-                                        المنتجات
+                                      ادارة المنتجات
                                         <i class="fas fa-angle-left right"></i>
                                     </p>
                                 </a>
@@ -890,13 +872,13 @@
                                     <li class="nav-item">
                                         <a href="/Admin/Product/Index" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>عرض </p>
+                                            <p>عرض المنتجات </p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="/Admin/Product/Form" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>اضافة </p>
+                                            <p>اضافة المنتجات </p>
                                         </a>
                                     </li>
                                 </ul>
@@ -914,13 +896,13 @@
                                     <li class="nav-item">
                                         <a href="/Admin/ProductCategory/Index" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>عرض </p>
+                                            <p> عرض اقسام المنتجات </p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="/Admin/ProductCategory/Form" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>اضافة </p>
+                                            <p>اضافة اقسام المنتجات </p>
                                         </a>
                                     </li>
                                 </ul>
@@ -937,13 +919,13 @@
                                     <li class="nav-item">
                                         <a href="/Admin/Store/Index" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>عرض </p>
+                                            <p>عرض المخازن </p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="/Admin/Store/Form" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>اضافة </p>
+                                            <p>اضافة المخازن  </p>
                                         </a>
                                     </li>
                                 </ul>
@@ -981,6 +963,21 @@
                                     </li>
                                 </ul>
 
+                                 <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/Admin/Charge/index" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>حركات محافظ الاطباء </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/Admin/SalesReport/Index" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>طلبات خاصة الاطباء </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                              
                             </li>
                           
 

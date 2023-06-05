@@ -109,7 +109,7 @@ namespace TawredatProject.Models
         public IEnumerable<TbSupplierSubscription> lstSupplierSubscription { get; set; }
 
         public IEnumerable<TbPurchaseSubscribtion> lstPurchaseSubscribtion { get; set; }
-        public IEnumerable<TbSubscriptionRequest> lstSubscriptionRequest { get; set; }
+        public IEnumerable<TbSubscriptionRequest> lstRequest { get; set; }
 
 
 

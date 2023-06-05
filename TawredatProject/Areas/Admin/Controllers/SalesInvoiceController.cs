@@ -56,10 +56,27 @@ namespace TawredatProject.Areas.Admin.Controllers
         public IActionResult Details(Guid SalesInvoiceId )
         {
             SalesInvoiceId = new Guid("af6565d7-f4ae-44ad-a87a-00edfd06ad89");
-            HomePageModel model = new HomePageModel();
-            model.lstSalesInvoiceProducts = salesInvoiceProductService.getAll().Where(x=>x.SalesInvoiceId==SalesInvoiceId ).ToList();
 
-            return View(model);
+            List<TbSalesInvoiceProduct> invoiceProducts = salesInvoiceProductService.getAll().Where(x => x.SalesInvoiceId == SalesInvoiceId).ToList();
+            List<SalesInv> sales=new List<SalesInv>();
+            foreach (var invoice in invoiceProducts)
+            {
+                SalesInv salesIn = new SalesInv()
+                {
+                    SalesInvoiceId=invoice.SalesInvoiceId,
+                    SupplierName=invoice.SupplierName,
+                    ProductName=invoice.ProductName,
+                    ProductPrice=invoice.ProductPrice,
+                    ProductQty=invoice.ProductQty,
+                    ProductCategoryName=invoice.ProductCategoryName,
+                    TotalProductValue=invoice.TotalProductValue,
+                    CreatedDate=invoice.CreatedDate
+                };
+                sales.Add(salesIn);
+
+            }
+          
+            return View(sales);
 
 
         }

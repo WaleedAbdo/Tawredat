@@ -30,14 +30,29 @@ namespace TawredatProject.Areas.Admin.Controllers
         public IActionResult Index()
         {
 
-            HomePageModel model = new HomePageModel();
-            model.lstSalesInvoiceProducts = salesInvoiceProductService.getAll();
+            List<TbSalesInvoiceProduct> invoiceProducts = salesInvoiceProductService.getAll().ToList();
+            List<SalesInv> sales = new List<SalesInv>();
+            foreach (var invoice in invoiceProducts)
+            {
+                SalesInv salesIn = new SalesInv()
+                {
+                    SalesInvoiceId = invoice.SalesInvoiceId,
+                    SupplierName = invoice.SupplierName,
+                    ProductName = invoice.ProductName,
+                    ProductPrice = invoice.ProductPrice,
+                    ProductQty = invoice.ProductQty,
+                    ProductCategoryName = invoice.ProductCategoryName,
+                    TotalProductValue = invoice.TotalProductValue,
+                    CreatedDate = invoice.CreatedDate
+                };
+                sales.Add(salesIn);
 
-            return View(model);
 
+
+            }
+            return View(sales);
 
         }
-
 
 
 

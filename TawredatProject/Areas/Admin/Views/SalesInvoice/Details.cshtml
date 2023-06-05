@@ -1,10 +1,24 @@
-﻿@model TawredatProject.Models.HomePageModel
+﻿@model IEnumerable<SalesInv>
+@{
+    ViewData["Title"] = "عرض تفاصيل الفاتورة";
+}
+@section DataTableStyles{
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+}
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>عرض تفاصيل الفواتير  </h1>
+                <h1>عرض تفاصيل الفاتورة  </h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -17,34 +31,35 @@
 </section>
 
 <!-- Main content -->
-<section class="content">
-    <div class="row">
-        <div class="col-12">
-
-
-            <div class="card">
-                <div class="card-header">
-                </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped ">
-                        <thead>
+                    <form asp-controller="SalesInvoice" asp-action="Details">
+                        <div class="row">
+                            <div class="col-xl-11">
+                                <input type="text" placeholder="Search By Name" name="MyName" class="form-control" />
+                            </div>
+                            <div class="col-xl-1">
+                                <input type="submit" value="Search" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                    <br />
+                    <table id="MostSearchedProductsTable" class="table table-hover table-bordered table-striped text-center font-weight-bold">
+
+                        <thead class="thead-dark">
                             <tr>
                                 <th> رقم الفاتورة </th>
 
-                                <th>اسم المشتري </th>
-                                <th>اسم رجل التوصيل </th>
+                             
+                              
 
                                 <th>اسم التاجر     </th>
                                 <th>اسم المنتج     </th>
-                                <th>صورة المنتج     </th>
+                                
                                 <th>سعر المنتج     </th>
 
                                 <th>كمية المنتج  </th>
-                                <th>اسم قسم المنتج     </th>
-
-                                <th>اجمالي قيمة المنتج       </th>
-
+                                
 
 
                                 <th>التاريخ  </th>
@@ -54,19 +69,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.lstSalesInvoiceProducts)
+                            @foreach (var item in Model)
                             {
 
                                 <tr>
                                     <td>@item.SalesInvoiceId</td>
 
-                                    <td>
-                                        @item.Name
-                                    </td>
-                                    <td>
-                                        @item.DeliveryManName
-                                    </td>
-
+                                   
+                                   
 
                                     <td>
                                         @item.SupplierName
@@ -75,28 +85,14 @@
                                         @item.ProductName
                                     </td>
 
-                                    <td style="width:10%">
-
-                                        <img style="max-width: 100%; " max-height: 100%;" src="@string.Format("/Uploads/{0}",item.ProductImage)" alt="Img placeholder">
-
-
-
-
-
-                                    </td>
+                                  
                                     <td>
                                         @item.ProductPrice
 
                                     <td>
                                             @item.ProductQty
                                     </td>
-                                    <td>
-                                            @item.ProductCategoryName
-                                    </td>
-
-                                    <td>
-                                            @item.TotalProductValue
-                                    </td>
+                                   
 
 
                                     <td>
@@ -111,36 +107,41 @@
 
 
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th> رقم الفاتورة </th>
-
-                                <th>اسم المشتري </th>
-                                <th>اسم رجل التوصيل </th>
-
-                                <th>اسم التاجر     </th>
-                                <th>اسم المنتج     </th>
-                                <th>صورة المنتج     </th>
-                                <th>سعر المنتج     </th>
-
-                                <th>كمية المنتج  </th>
-                                <th>اسم قسم المنتج     </th>
-
-                                <th>اجمالي قيمة المنتج       </th>
-
-
-
-                                <th>التاريخ  </th>
-                            </tr>
-                        </tfoot>
+                      
                     </table>
                 </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-        </div>
-        <!-- /.col -->
-    </div>
-    <!-- /.row -->
-</section>
+@section DataTableJS{
+
+    <script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/plugins/jszip/jszip.min.js"></script>
+    <script src="~/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="~/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="~/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+    <script>
+        $(function () {
+            $("#MostSearchedProductsTable").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#MostSearchedProductsTable_wrapper .col-md-6:eq(0)');
+            $('#example').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+}
+            
 <!-- /.content -->

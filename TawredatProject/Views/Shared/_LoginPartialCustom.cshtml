@@ -7,7 +7,8 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <a class="nav-link" href="#">Hello @UserManager.GetUserName(User)</a>
+            <a class="nav-link" href="#"><span>مرحبا بك &nbsp;</span> @UserManager.GetUserAsync(User).Result.FirstName</a>
+           @* <span>مرحبا بك &nbsp;</span> @UserManager.GetUserAsync(User).Result.FirstName*@
         </li>
         <li class="nav-item">
             <form id="logoutForm" method="post" class="form-inline" asp-controller="Account" asp-action="LogOff">
@@ -16,15 +17,15 @@
         </li>
     }
     else
-    {
+    {   
        
-             <li class="nav-item">
-            <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Account" asp-action="Register">انشاء حساب</a>
         </li>
        
        
         <li class="nav-item">
-            <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+            <a class="nav-link" asp-controller="Account" asp-action="Login">تسجيل الدخول</a>
         </li>
        
     }

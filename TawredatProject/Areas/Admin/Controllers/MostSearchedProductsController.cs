@@ -44,7 +44,7 @@ namespace TawredatProject.Areas.Admin.Controllers
                 {
                     //ProductId = item.ProductId,
                     ProductName = item.ProductName,
-                    ProductDescription = item.ProductDescription,
+                   // ProductDescription = item.ProductDescription,
                     ProductCategoryName = item.ProductCategoryName,
                     StoreName = item.StoreName,
                     Quantity = item.Quantity,
@@ -80,7 +80,7 @@ namespace TawredatProject.Areas.Admin.Controllers
                 {
                     //ProductId = item.ProductId,
                     ProductName = item.ProductName,
-                    ProductDescription = item.ProductDescription,
+                   // ProductDescription = item.ProductDescription,
                     ProductCategoryName = item.ProductCategoryName,
                     StoreName = item.StoreName,
                     Quantity = item.Quantity,

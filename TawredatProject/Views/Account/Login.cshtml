@@ -3,11 +3,11 @@
 @inject SignInManager<BL.ApplicationUser> signInManager
 
 
-<h1 class="text-info">Log in</h1>
+<h1 class="text-info">تسجيل الدخول</h1>
 <div class="row">
     <div class="col-md-8">
         <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" role="form">
-            <h4>Use a local account to log in.</h4>
+          
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
@@ -37,14 +37,14 @@
 
             <div class="form-group">
                 <div class="col-md-2">
-                    <button type="submit" class="btn btn-success form-control">Log in</button>
+                    <button type="submit" class="btn btn-success form-control">الدخول</button>
                 </div>
             </div>
             <p>
-                <a asp-action="Register"> Register as a new user?</a>
+                <a asp-action="Register"> هل تريد انشاء حساب جديد؟</a>
             </p>
             <p>
-                <a asp-action="ForgotPassword"> Forgot your passowrd?</a>
+                <a asp-action="ForgotPassword"> هل نسجيل كلمة المرور؟</a>
             </p>
         </form>
     </div>
@@ -57,14 +57,14 @@
         {
             <div class="col-md-4">
                 <section>
-                    <h4>User another service to log in.</h4>
+                    
                     <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" role="form">
                         <div>
                             <p>
                                 @foreach (var provider in loginProivders)
                                 {
                                     <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name"
-                                title="Log in using your @provider.Name account">
+                                     title="Log in using your @provider.Name account">
                                         @provider.Name
                                     </button>
                                 }
