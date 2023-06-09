@@ -74,12 +74,23 @@ namespace AlMohamyProject.Controllers
                 Value = "User",
                 Text = "User"
             });
+            listItems.Add(new SelectListItem()
+            {
+                Value = "مدير مشتريات",
+                Text = "مدير مشتريات"
+            });
+            listItems.Add(new SelectListItem()
+            {
+                Value = "التجار",
+                Text = "التجار"
+            });
 
             listItem.Add(new SelectListItem()
             {
                 Value = "doctor",
                 Text = "doctor"
             });
+
 
             ViewData["ReturnUrl"] = returnurl;
             //four    five registerview model //six register view
@@ -107,12 +118,20 @@ namespace AlMohamyProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(FormFileCollection files, RegisterViewModel model, string returnurl = null)
         {
+            var curUser = await _userManager.GetUserAsync(HttpContext.User);
             ViewData["ReturnUrl"] = returnurl;
             returnurl = returnurl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.Name, };
                 user.Status = model.Status;
+                user.EmailConfirmed = true;
+                user.CreatedBy = curUser.Id;
+                user.CreatedDate= DateTime.Now;
+                user.CurrentState = 1;
+                user.UpdatedBy = curUser.Id;
+                user.Notes = "bycurrentuserlogin";
+              
                 //SendSMSDto dto = new SendSMSDto();
                 //dto.MobileNumber = user.PhoneNumber;
 
@@ -136,10 +155,23 @@ namespace AlMohamyProject.Controllers
                     {
                         await _userManager.AddToRoleAsync(user, "Admin");
                     }
-                    else
+                    else if(model.RoleSelected != null && model.RoleSelected.Length > 0 && model.RoleSelected == "User")
                     {
                         await _userManager.AddToRoleAsync(user, "User");
                     }
+                    else if (model.RoleSelected != null && model.RoleSelected.Length > 0 && model.RoleSelected == "مدير مشتريات")
+                    {
+                        await _userManager.AddToRoleAsync(user, "مدير مشتريات");
+                    }
+                    else if (model.RoleSelected != null && model.RoleSelected.Length > 0 && model.RoleSelected == "doctor")
+                    {
+                        await _userManager.AddToRoleAsync(user, "doctor");
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "التجار");
+                    }
+
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackurl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
@@ -167,6 +199,7 @@ namespace AlMohamyProject.Controllers
                 Value = "User",
                 Text = "User"
             });
+          
             model.RoleList = listItems;
             return View(model);
         }

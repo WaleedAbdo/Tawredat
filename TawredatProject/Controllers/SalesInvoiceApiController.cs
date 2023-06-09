@@ -289,7 +289,8 @@ namespace TawredatProject.Controllers
                                 SupplierId = SI.SupplierId,
                                 SupplierName = SI.SupplierName,
                                 Promocode = SI.Promocode,
-                                Notes= SI.PurchasingCartId.ToString(),
+                                //Related PurchasingCartId.
+                                Notes = SI.PurchasingCartId.ToString(),
                                 ProductPriceAfterDiscount = SI.ProductPriceAfterDiscount,
                                 ProductQty = QuitityProduct.ToString()
                             };

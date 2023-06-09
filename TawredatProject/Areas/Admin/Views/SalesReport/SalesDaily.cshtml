@@ -1,6 +1,6 @@
 ﻿@model TawredatProject.Models.HomePageModel
 @{
-    ViewData["Title"] = "Users";
+    ViewData["Title"] = "SalesDaily";
 }
 
 @section DataTableStyles{
@@ -19,12 +19,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>تقرير المستخدمين</h1>
+                <h1>تقرير المبيعات</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#"></a></li>
-                    <li class="breadcrumb-item active">تقرير المستخدمين</li>
+                    <li class="breadcrumb-item"><a href="#">ادارة التقارير</a></li>
+                    <li class="breadcrumb-item active">تقرير المبيعات</li>
                 </ol>
             </div>
         </div>
@@ -34,7 +34,7 @@
 
 <!-- /.card-header -->
 <div class="card-body">
-    <form asp-controller="UsersActivities" asp-action="UserList">
+    <form asp-controller="SalesReport" asp-action="Index">
         <div class="row">
             <div class="col-xl-11">
                 <input type="text" placeholder="Search By Name" name="MyName" class="form-control" />
@@ -48,19 +48,19 @@
 
     <br />
 
-    <table id="UsersActivitiesTable" class="table table-hover table-bordered table-striped text-center font-weight-bold">
+    <table id="SalesReportTable" class="table table-hover table-bordered table-striped text-center font-weight-bold">
 
         <thead>
             <tr>
 
-                <th> اسم المستخدم </th>
-                @* <th>اسم المدينة </th>*@
+                <th> تاريخ الفاتورة </th>
+                <th>اسم المشتري </th>
 
 
 
-                <th>البريد الالكترونى     </th>
-                <th>رقم الهاتف       </th>
-                <th>تاريخ الانشاء     </th>
+                <th>اسم طريقة الدفع     </th>
+                <th>اجمالي قيمة الفاتورة       </th>
+                <th>مكان  التسليم     </th>
 
 
 
@@ -68,31 +68,31 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.UserData)
+            @foreach (var item in Model.lstSalesInvoices)
             {
 
                 <tr>
                     <td>
-                        @item.FirstName
+                        @item.CreatedDate
                     </td>
 
-                    @*  <td>
-                @item.CityName
-                </td>*@
+                    <td>
+                        @item.SupplierName
+                    </td>
 
 
 
 
 
                     <td>
-                        @item.Email
+                        @item.PaymnetMethodName
                     </td>
                     <td>
-                        @item.PhoneNumber
+                        @item.TotalInvoiceAfter
                     </td>
-                      <td>
-                @item.CreatedDate
-                </td>
+                    <td>
+                        @item.DeliveryAddress
+                    </td>
 
 
 
@@ -124,10 +124,10 @@
 
     <script>
         $(function () {
-            $("#UsersActivitiesTable").DataTable({
+            $("#SalesReportTable").DataTable({
                 "responsive": true, "lengthChange": false, "autoWidth": false,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#UsersActivitiesTable_wrapper .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#SalesReportTable_wrapper .col-md-6:eq(0)');
             $('#example').DataTable({
                 "paging": true,
                 "lengthChange": false,

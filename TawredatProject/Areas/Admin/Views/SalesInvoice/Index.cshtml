@@ -13,6 +13,7 @@
 }
 
 <section class="content-header">
+    <input type="hidden" id="Id" name="Id" />
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
@@ -89,7 +90,7 @@
                                     <td>
 @*                                        <a asp-controller="Landing" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-light x-Landing  px-8">Update</a>
 *@
-                        <a asp-controller="SalesInvoice" asp-action="Details" asp-route-id="@item.SalesInvoiceId" class="btn btn-light x-Landing  px-8">Details</a>
+                                <a asp-controller="SalesInvoice" asp-action="Details" asp-route-id="@item.SalesInvoiceId" class="btn btn-light x-Landing  px-8">Details</a>
                                     </td>
                                    
                                 </tr>
@@ -117,6 +118,7 @@
     <script src="~/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="~/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="~/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="~/plugins/jquery/jquery.min.js"></script>
 
 
     <script>
@@ -135,6 +137,37 @@
                 "responsive": true,
             });
         });
+
+
+        <!-- ...your existing code... -->
+
+
+            $(function () {
+
+                $(".x-Landing").click(function () {
+
+                    var landingId = $(this).val(); 
+                    $.ajax({
+
+                        type: "GET",
+                        url: "/SalesInvoice/Details/" + landingId,
+                        data: { SalesInvoiceId: landingId },
+                        success: function (res) {
+
+
+
+                           
+                        }
+                    });
+
+                });
+
+
+
+
+            });
+   
+
     </script>
 }
 

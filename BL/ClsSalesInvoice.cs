@@ -1,8 +1,11 @@
 ﻿using Domains;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 
 namespace BL
@@ -13,16 +16,26 @@ namespace BL
         bool Add(TbSalesInvoice client);
         bool Edit(TbSalesInvoice client);
         bool Delete(TbSalesInvoice client);
+        List<TbSalesInvoice> getDailyAll();
+        List<TbSalesInvoice> getbySupplierAll();
+        List<TbSalesInvoice> getbyUserIdAll();
+
 
 
     }
     public class ClsSalesInvoice : SalesInvoiceService
     {
         TawredatDbContext ctx;
+        UserManager<ApplicationUser> Usermanager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ClsSalesInvoice(TawredatDbContext context)
+        public ClsSalesInvoice(TawredatDbContext context,
+            UserManager<ApplicationUser> usermanager,
+            IHttpContextAccessor httpContextAccessor)
         {
             ctx = context;
+            Usermanager = usermanager;
+            _httpContextAccessor = httpContextAccessor;
         }
         public List<TbSalesInvoice> getAll()
         {
@@ -81,6 +94,36 @@ namespace BL
                 return false;
 
             }
+        }
+
+        public List<TbSalesInvoice> getDailyAll()
+        {
+            DateTime currentDate = DateTime.UtcNow.Date;
+            List<TbSalesInvoice> lstSalesInvoices = ctx.TbSalesInvoices.Where(a=>a.CreatedDate.Value.Date == currentDate).ToList();
+
+            return lstSalesInvoices;
+        }
+
+        public List<TbSalesInvoice> getbySupplierAll()
+        {
+            var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var curUser = Usermanager.Users.FirstOrDefault(a => a.Id == userId);
+            var ListUser = ctx.TbSuppliers.Where(a => a.CreatedBy == curUser.Id).Select(s => s.SupplierId).ToList();
+            List<TbSalesInvoice> lstSalesInvoices = ctx.TbSalesInvoices.Where(x => ListUser.Any(l => l == x.SupplierId)).ToList();
+
+
+            return lstSalesInvoices;
+        }
+
+        public List<TbSalesInvoice> getbyUserIdAll()
+        {
+            
+
+            var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var curUser = Usermanager.Users.FirstOrDefault(a => a.Id == userId);
+            var ListUser = Usermanager.Users.Where(a => a.CreatedBy == curUser.Id).Select(s => s.Id).ToList();
+            List<TbSalesInvoice> lstSalesInvoices = ctx.TbSalesInvoices.Where(x => ListUser.Any(l => l == x.CreatedBy)).ToList();
+            return lstSalesInvoices;
         }
     }
 }

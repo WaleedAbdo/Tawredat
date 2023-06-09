@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
@@ -34,7 +35,12 @@ namespace BL
         public string? Latitude { get; set; }
         public string? Longitute { get; set; }
         public string? Location { get; set; }
-
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public string Notes { get; set; }
+        public int? CurrentState { get; set; }
 
 
         [NotMapped]

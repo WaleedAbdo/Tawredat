@@ -52,6 +52,21 @@
                     </div>
                 </div>
                 <!-- ./col -->
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>@sales.getDailyAll().Count()</h3>
+
+                            <p>الطلبات الجديده </p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="/Admin/SalesReport/SalesDaily" class="small-box-footer">المزيد من المعلومات <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-success">
@@ -98,11 +113,11 @@
                 </div>
 
                 <!-- ./col -->
-               @* <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            //  <h3>@req.getAll().Count()<sup style="font-size: 20px"></sup></h3>
+                              <h3>@req.getAll().Count()<sup style="font-size: 20px"></sup></h3>
                         
                             <p>التجار قيد الانتظار</p>
                         </div>
@@ -111,7 +126,7 @@
                         </div>
                         <a href="/Admin/SubscriptionManagement/Index" class="small-box-footer">المزيد من المعلومات <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                </div>*@
+                </div>
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
@@ -249,14 +264,14 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>@sales.getAll().Count()</h3>
+                            <h3>@sales.getbySupplierAll().Count()</h3>
 
-                            <p>الطلبات مرتبطه بالمنتجات </p>
+                            <p>الطلبات المرتبطه بالمتاجر </p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="/Admin/SalesReport/Index" class="small-box-footer">المزيد من المعلومات <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/Admin/SalesReport/SalesSupplier" class="small-box-footer">المزيد من المعلومات <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -302,14 +317,14 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>@sales.getAll().Count()</h3>
+                            <h3>@sales.getbyUserIdAll().Count()</h3>
 
                             <p>طلبات خاصة الاطباء </p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="/Admin/SalesReport/Index" class="small-box-footer">المزيد من المعلومات <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/Admin/SalesReport/SalesDoctor" class="small-box-footer">المزيد من المعلومات <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
@@ -325,7 +340,7 @@
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="/Admin/UsersActivities/DoctorList" class="small-box-footer">المزيد من المعلومات <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/Admin/SalesReport/DoctorLists" class="small-box-footer">المزيد من المعلومات <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
 
                 </div>

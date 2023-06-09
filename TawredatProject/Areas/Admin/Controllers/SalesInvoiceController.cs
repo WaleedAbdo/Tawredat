@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System;
 using TawredatProject.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace TawredatProject.Areas.Admin.Controllers
 {
@@ -50,14 +51,29 @@ namespace TawredatProject.Areas.Admin.Controllers
 
         }
 
+        //    [HttpGet]
+        //    public IActionResult GetInvoiceDetails(int id)
+        //    {
+        //        var invoice = dbContext.Invoices.FirstOrDefault(i => i.Id == id); // Replace "Invoices" with your actual DbSet name
 
+        //        if (invoice == null)
+        //        {
+        //            return NotFound();
+        //        }
+
+        //        return PartialView("_InvoiceDetails", invoice);
+        //    }
+        //}
+
+
+
+        [HttpGet("Details/{id}")]
         [Authorize(Roles = "Admin,فاتورة البيع")]
-        //[HttpPost]
-        public IActionResult Details(Guid SalesInvoiceId )
+        public IActionResult Details(Guid id)
         {
-            SalesInvoiceId = new Guid("af6565d7-f4ae-44ad-a87a-00edfd06ad89");
+           // SalesInvoiceId = new Guid("af6565d7-f4ae-44ad-a87a-00edfd06ad89");
 
-            List<TbSalesInvoiceProduct> invoiceProducts = salesInvoiceProductService.getAll().Where(x => x.SalesInvoiceId == SalesInvoiceId).ToList();
+            List<TbSalesInvoiceProduct> invoiceProducts = salesInvoiceProductService.getAll().Where(x => x.SalesInvoiceId == id).ToList();
             List<SalesInv> sales=new List<SalesInv>();
             foreach (var invoice in invoiceProducts)
             {

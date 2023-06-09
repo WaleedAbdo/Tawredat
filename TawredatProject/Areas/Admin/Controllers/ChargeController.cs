@@ -26,7 +26,7 @@ namespace TawredatProject.Areas.Admin.Controllers
             ctx = context;
 
         }
-        [Authorize(Roles = "Admin,الشحن")]
+        [Authorize(Roles = "مدير مشتريات,Admin,الشحن")]
         public IActionResult Index()
         {
 

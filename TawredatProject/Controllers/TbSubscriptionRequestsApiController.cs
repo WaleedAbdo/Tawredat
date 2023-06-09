@@ -23,18 +23,20 @@ namespace TawredatProject.Controllers
     {
         UserManager<ApplicationUser> Usermanager;
         private readonly TawredatDbContext _context;
+        RequestService RequestService;
 
-        public TbSubscriptionRequestsApiController(TawredatDbContext context, UserManager<ApplicationUser> usermanager)
+        public TbSubscriptionRequestsApiController(TawredatDbContext context, UserManager<ApplicationUser> usermanager, RequestService requestService)
         {
             _context = context;
             Usermanager = usermanager;
+            RequestService = requestService;
         }
 
         // GET: api/TbSubscriptionRequestsApi
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TbSubscriptionRequest>>> GetTbSubscriptionRequest()
         {
-            return await _context.TbSubscriptionRequest.ToListAsync();
+            return  RequestService.getAll().ToList();
         }
 
         // GET: api/TbSubscriptionRequestsApi/5

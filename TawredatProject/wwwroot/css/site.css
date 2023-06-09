@@ -69,3 +69,64 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+
+main.pb-3 .row {
+    justify-content: center;
+}
+
+.text-info {
+    color: #004aad !important;
+    text-align: center;
+}
+
+form {
+    background: #fff;
+    color: #004aad;
+    padding: 60px 50px;
+    margin-top: 50px;
+    box-shadow: 3px 6px 6px -2px lightblue;
+}
+
+    form a {
+        color: #004aad;
+    }
+
+.navbar-collapse.collapse.d-sm-inline-flex.flex-sm-row-reverse form {
+    background: transparent;
+    color: #000;
+    padding: 0;
+    margin-top: 0;
+    box-shadow: none;
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    background: #004aad;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgb(0 74 173);
+}
+
+.navbar-light .navbar-brand {
+    color: rgb(0 74 173);
+}
+
+.text-muted {
+    color: #ffffff !important;
+}
+
+
+.text-muted a {
+    color: #ffffff !important;
+}

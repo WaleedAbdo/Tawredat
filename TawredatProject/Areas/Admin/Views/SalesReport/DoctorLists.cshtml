@@ -19,12 +19,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>تقرير المستخدمين</h1>
+                <h1>تقرير الاطباء</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#"></a></li>
-                    <li class="breadcrumb-item active">تقرير المستخدمين</li>
+                    <li class="breadcrumb-item active">تقرير الاطباء</li>
                 </ol>
             </div>
         </div>
@@ -34,7 +34,7 @@
 
 <!-- /.card-header -->
 <div class="card-body">
-    <form asp-controller="UsersActivities" asp-action="UserList">
+    <form asp-controller="SalesReport" asp-action="DoctorLists">
         <div class="row">
             <div class="col-xl-11">
                 <input type="text" placeholder="Search By Name" name="MyName" class="form-control" />
@@ -61,6 +61,7 @@
                 <th>البريد الالكترونى     </th>
                 <th>رقم الهاتف       </th>
                 <th>تاريخ الانشاء     </th>
+                @* <th>تابع لمدير مشتريات    </th>*@
 
 
 
@@ -90,9 +91,9 @@
                     <td>
                         @item.PhoneNumber
                     </td>
-                      <td>
-                @item.CreatedDate
-                </td>
+                    <td>
+                        @item.CreatedDate
+                    </td>
 
 
 
