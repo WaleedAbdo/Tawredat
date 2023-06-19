@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -121,10 +122,10 @@ namespace AlMohamyProject.Controllers
                     var userEmail = Usermanager.Users.FirstOrDefault(a => a.Email == model.Email);
                     if (userEmail == null)
                     {
-
+                        //string otp = ETALogin(model.PhoneNumber);
                         string Phonenumber = model.PhoneNumber;
-
-                        var otp = Phonenumber.Substring(Phonenumber.Length - 4, 4);
+                      
+                       // var otp = Phonenumber.Substring(Phonenumber.Length - 4, 4);
                         var user = new ApplicationUser()
                         {
                             UserName = model.UserName,
@@ -132,7 +133,14 @@ namespace AlMohamyProject.Controllers
                             Email = model.Email,
                             IsAgree = model.IsAgree,
                             IsActive = false,
-                            OTP = otp
+                            Status = "User",
+                            EmailConfirmed = true,
+                            CreatedBy = "",
+                            CreatedDate = System.DateTime.Now,
+                            CurrentState = 1,
+                            UpdatedBy = "",
+                            Notes = "bycurrentuserlogin",
+                            // OTP = otp
 
                         };
                         var result = await Usermanager.CreateAsync(user, model.Password);
@@ -198,7 +206,41 @@ namespace AlMohamyProject.Controllers
             }
 
         }
-        
+
+        //[Route("api/EInvoice/ETALogin")]
+        //[HttpPost]
+        //public string ETALogin(string phoneNumber)
+        //{
+
+
+
+
+
+        //    var client = new RestClient("https://apis.deewan.sa/mfa/v2/verifications");
+        //    var request = new RestRequest(Method.POST);
+        //    request.AddHeader("accept", "application/json");
+        //    request.AddHeader("content-type", "application/json");
+        //    request.AddHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6ImM3ZGIyNGE5MjVmOTQyZjk3YTM2OTNmNDY0NDk2MGE1YWRhMDAyNmZhZTdhM2E2NzhjYjU2NzM3NDIxZWFlNjEiLCJpYXQiOjE2ODY3NjAyNDcsImV4cCI6MzI2NDY0MDI0N30.jMABkzBwmCOM7O3QnnMXh0NSlCNIB4QxpMOw5vf-qFY");
+        //    request.AddParameter("application/json", "{\"channel\":\"SMS\",\"recipientIdentifier\":\"" + phoneNumber + "\",\"templateCode\":\"55565d0d-4e4c-4524-857c-18af25e765e6\"}", ParameterType.RequestBody);
+
+        //    IRestResponse response = client.Execute(request);
+        //    if (response.IsSuccessful)
+        //    {
+        //        return response.Content;
+        //    }
+        //    else
+        //    {
+        //        return response.Content;
+
+        //    }
+
+
+
+        //    // return Ok(JsonConvert.SerializeObject(response.Content, Formatting.Indented));
+
+
+        //}
+
         [Authorize]
         [AllowAnonymous]
         [HttpGet("my-protected-endpoint")]

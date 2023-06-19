@@ -155,7 +155,7 @@ namespace TawredatProject.Controllers
         public string ETALogin(string phoneNumber)
         {
 
-            //user_DTO _user_DTO = new user_DTO();
+            
 
 
 
@@ -167,29 +167,21 @@ namespace TawredatProject.Controllers
             request.AddParameter("application/json", "{\"channel\":\"SMS\",\"recipientIdentifier\":\"" + phoneNumber + "\",\"templateCode\":\"55565d0d-4e4c-4524-857c-18af25e765e6\"}", ParameterType.RequestBody);
 
             IRestResponse response = client.Execute(request);
+            if (response.IsSuccessful)
+            {
+                return response.Content;
+            }
+            else
+            {
+                return response.Content;
+
+            }
 
 
 
+           // return Ok(JsonConvert.SerializeObject(response.Content, Formatting.Indented));
 
-            //var client = new RestClient("https://apis.deewan.sa/mfa/v2/verifications");
-            // var request = new RestRequest(Method.Post.ToString());
-            //request.AddHeader("accept", "application/json");
-            //request.AddHeader("content-type", "application/json");
-            //request.AddHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6ImM3ZGIyNGE5MjVmOTQyZjk3YTM2OTNmNDY0NDk2MGE1YWRhMDAyNmZhZTdhM2E2NzhjYjU2NzM3NDIxZWFlNjEiLCJpYXQiOjE2ODY3NjAyNDcsImV4cCI6MzI2NDY0MDI0N30.jMABkzBwmCOM7O3QnnMXh0NSlCNIB4QxpMOw5vf-qFY");
-            //request.AddParameter("application/json", "{\"channel\":\"SMS\",\"recipientIdentifier\":\"" + phoneNumber + "\",\"templateCode\":\"55565d0d-4e4c-4524-857c-18af25e765e6\",\"otpCodeLength\":\"4\",\"otpCodeExpiry\":\"9\"}", RestSharp.ParameterType.RequestBody);
-
-            ////request.AddParameter("application/json", "{\"channel\":\"SMS\",\"recipientIdentifier\":+phoneNumber+",\"templateCode\":\"55565d0d-4e4c-4524-857c-18af25e765e6\",\"otpCodeLength\":\"4\",\"otpCodeExpiry\":\"9\"}", ParameterType.RequestBody);
-            //RestResponse response = client.Execute(request);
-
-
-
-
-
-
-            //var jobject = (JObject)JsonConvert.DeserializeObject(response.Content);
-            //var jvalue = (JValue)jobject["access_token"];
-
-            return response.Content;
+           
         }
 
 
